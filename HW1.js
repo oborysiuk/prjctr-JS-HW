@@ -7,12 +7,7 @@ const userNames = ["Петрик Ольга Іванівна", "Гнатюк П�
                     "Рудко Андрій Опанасович"];
 let initials;
 
-initials = userNames.map((str) => String(str).split(' '));
-
-for (let i=0; i<initials.length; i++){
-
-    initials[i] = initials[i].map((str) => String(str).slice(0,1)).join('.')+'.';
-}
+initials = userNames.map((str) => str.split(' ').map((str) => str.slice(0,1)).join('.')+'.');
 
 initials.sort();
 console.log(initials);
@@ -38,7 +33,7 @@ console.log(filteredNames);
 // 2nd method
 console.log("через вбудований метод масивів");
 
-filteredNames = userNames1.filter((el) => {return vowels.includes(el[0])});
+filteredNames = userNames1.filter((el) => vowels.includes(el[0]));
 console.log(filteredNames);
 
 // Task #3
@@ -47,7 +42,7 @@ console.log("3. Задача на розворот числа:");
 const currentMaxValue = 4589;
 let reverseMaxValue;
 
-reverseMaxValue = parseInt(currentMaxValue.toString().split("").reverse().join(""));
+reverseMaxValue = parseInt(currentMaxValue.toString().split("").reverse().join(""), 10);
 
 console.log(reverseMaxValue);
 console.log(typeof reverseMaxValue);
@@ -60,11 +55,6 @@ let productOfArray;
 let flatArray;
 
 flatArray = resultsArray.flat(Infinity);
-productOfArray = flatArray[0];
-
-for (let i=1; i<flatArray.length; i++){
-
-    productOfArray = productOfArray*flatArray[i];
-}
+productOfArray = flatArray.reduce((accumulator, currentValue) => accumulator * currentValue)
 
 console.log(productOfArray);
