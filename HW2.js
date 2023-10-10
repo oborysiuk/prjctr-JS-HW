@@ -5,15 +5,23 @@
         let timeDiff =  Math.abs(new Date(dateEnd) - new Date(dateStart)); 
 
         switch (dimension){
-            case ('days'): timeDiff /= (1000 * 3600 * 24); break;
-            case ('hours'): timeDiff /= (1000 * 3600); break;
-            case ('minutes'): timeDiff /= (1000 * 60); break;
-            case ('seconds'): timeDiff /= 1000; break;
+            case 'days': 
+                timeDiff /= (1000 * 3600 * 24); 
+                break;
+            case 'hours': 
+                timeDiff /= (1000 * 3600); 
+                break;
+            case 'minutes':
+                timeDiff /= (1000 * 60); 
+                break;
+            case 'seconds':
+                timeDiff /= 1000; 
+                break;
 
             default: return console.log('Wrong dimantion format!'); 
         }
 
-        return timeDiff.toString()+' '+dimension;
+        return `${timeDiff.toString()} dimension`;
     }
 
     console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds'));  // поверне '86400 seconds'
@@ -39,7 +47,7 @@
 // Task #3 - Задача про рекурсію
 
     function recursiveOddSumTo(number) {
-        if (number % 2 != 0) {
+        if (number % 2 !== 0) {
             if (number === 1)
                 return number;
             else 
@@ -56,7 +64,7 @@
     function iterativeOddSumTo(number) {
         let sum = 0;
         for (let i=1; i<=number; i++){
-            if (i %2 != 0)
+            if (i %2 !== 0)
                 sum += i;
         }
         return sum;
