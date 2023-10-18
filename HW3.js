@@ -55,9 +55,6 @@ const movies = [
 	},
 ];
 
-//console.log(movies.sort((firstItem, secondItem) => firstItem.releaseYear - secondItem.releaseYear))
-
-
 console.log(movies.sort(byProperty('releaseYear', '>'))); 
 // виведе масив фільмів посортованих по року випуску, від старішого до новішого
 console.log(movies.sort(byProperty('runningTimeInMinutes', '<'))); 
@@ -67,10 +64,10 @@ console.log(movies.sort(byProperty('movieName', '>')));
 
 function byProperty(property, direction) {
    if (direction === '>'){
-    return (firstItem, secondItem) => (Reflect.get(firstItem, property) > Reflect.get(secondItem, property)) ? 1: -1;
+    return (firstItem, secondItem) => (firstItem[property] > secondItem[property]) ? 1: -1;
    }
    else if (direction === '<'){
-    return (firstItem, secondItem) => (Reflect.get(firstItem, property) < Reflect.get(secondItem, property)) ? 1:-1;
+    return (firstItem, secondItem) => (firstItem[property] < secondItem[property]) ? 1:-1;
    }
  }
 
