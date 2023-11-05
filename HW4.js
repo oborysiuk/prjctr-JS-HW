@@ -10,7 +10,15 @@ detonatorTimer(3);
 
 function detonatorTimer(delay) {
 
-    let timerId = setInterval(() => {if (delay > 0) {console.log(delay); delay -= 1;} else {console.log('BOOM!'); clearInterval(timerId); }}, 1000);
+    let timerId = setInterval(() => {
+        if (delay > 0) {
+            console.log(delay); 
+            delay -= 1;
+        } else {
+            console.log('BOOM!'); 
+            clearInterval(timerId); 
+        }
+    }, 1000);
 	
 }
 
@@ -32,7 +40,7 @@ function detonatorTimer(delay) {
         } 
         else {
             console.log('BOOM!'); 
-            clearInterval(timerId); 
+            clearTimeout(timerId); 
         }
     }, 1000);
 	
@@ -81,9 +89,9 @@ function someFunction(a,b) {
 
 function slower(func, seconds) {
     console.log(`Chill out, you will get you result in ${seconds} seconds`);
-    return function(a,b){
+    return function(...number){
         setTimeout(function() {
-            func(a,b);
+            func(...number);
         }, seconds*1000);
     }
 // тут ваш код для декоратора
