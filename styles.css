@@ -1,0 +1,33 @@
+.redBtn {
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 16px;
+    margin: auto;
+  }
+  .background{
+    background-color: white;
+  }
+  .vertical-center  {
+
+    display: flex;
+    justify-content: center;  
+    text-align: center;  
+  }
+  
+  .container {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+
+  }
+
+  .time-info, .last-update{
+    color: red;
+    text-align: center;  
+  }
