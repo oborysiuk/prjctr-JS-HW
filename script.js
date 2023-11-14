@@ -44,8 +44,9 @@ function pageSet(state){
         body.style.backgroundColor = "white";
         lastUpdate.appendChild(document.createTextNode('Last turn on:'));
     }
-
-    setTime(new Date(state[1]));
+    
+    timeInfo.innerHTML = '';
+    timeInfo.appendChild(document.createTextNode(state[1]));
 }
 
 function setTime(date){
@@ -88,5 +89,7 @@ function formatDate(date) {
     ? JSON.parse(localStorage.getItem(['btnState', 'lastTimeChange'])) 
     : [];
 
-    pageSet(state);
+    if (state.length !== 0){
+        pageSet(state);
+    }
 }
