@@ -8,16 +8,16 @@ let timeInfo = document.querySelector('.time-info');
 let lastUpdate = document.querySelector('.last-update');
 
 button.addEventListener('click', (event)=>{
-    pageChange([button.textContent, Date.now()]);
+    pageChange(button.textContent, Date.now());
 })
 
 document.addEventListener('DOMContentLoaded', renderState);
 
-function pageChange(state){
+function pageChange(textContent, date){
 
     lastUpdate.innerHTML = '';
     
-    if (state[0] === 'Turn off'){
+    if (textContent === 'Turn off'){
         button.innerHTML = 'Turn on';
         body.style.backgroundColor = "black";
         lastUpdate.appendChild(document.createTextNode('Last turn off:'));
@@ -28,13 +28,13 @@ function pageChange(state){
         lastUpdate.appendChild(document.createTextNode('Last turn on:'));
     }
 
-    setTime(new Date(state[1]));
+    setTime(new Date(date));
     storeStateInLocalStorage(button.textContent, timeInfo.textContent);
 }
 
-function pageSet(state){
+function pageSet(textContent, date){
 
-    if (state[0] === 'Turn on'){
+    if (textContent === 'Turn on'){
         button.innerHTML = 'Turn on';
         body.style.backgroundColor = "black";
         lastUpdate.appendChild(document.createTextNode('Last turn off:'));
@@ -46,7 +46,7 @@ function pageSet(state){
     }
     
     timeInfo.innerHTML = '';
-    timeInfo.appendChild(document.createTextNode(state[1]));
+    timeInfo.appendChild(document.createTextNode(date));
 }
 
 function setTime(date){
@@ -77,19 +77,26 @@ function formatDate(date) {
   }
 
 
-  function storeStateInLocalStorage(btnState, lastTimeChange){
+  function storeStateInLocalStorage(textContent, date){
     
-    const state = [btnState,lastTimeChange];
-    localStorage.setItem(['btnState', 'lastTimeChange'], JSON.stringify(state));
+    const buttonTextContent = textContent;
+    localStorage.setItem('textContent', JSON.stringify(buttonTextContent));
+    
+    const dateOfChange = date;
+    localStorage.setItem('date', JSON.stringify(dateOfChange));
   }
 
   function renderState() {
     
-    const state = localStorage.getItem(['btnState', 'lastTimeChange']) !== null 
-    ? JSON.parse(localStorage.getItem(['btnState', 'lastTimeChange'])) 
+    const buttonTextContent = localStorage.getItem('textContent') !== null 
+    ? JSON.parse(localStorage.getItem('textContent')) 
     : [];
 
-    if (state.length !== 0){
-        pageSet(state);
+    const dateOfChange = localStorage.getItem('date') !== null 
+    ? JSON.parse(localStorage.getItem('date')) 
+    : [];
+
+    if (buttonTextContent.length !== 0 && dateOfChange.length !== 0){
+        pageSet(buttonTextContent, dateOfChange);
     }
 }
